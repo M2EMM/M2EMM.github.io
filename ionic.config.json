@@ -1,0 +1,7 @@
+{
+  "name": "m2emm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
