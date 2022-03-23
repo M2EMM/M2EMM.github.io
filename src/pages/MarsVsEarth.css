@@ -1,4 +1,8 @@
+h1.title-planets {
+  filter: drop-shadow(3pt 3pt 15pt #31557E);
+}
+
 canvas {
-    width: 100%;
-    flex-grow: 1;
+  width: 100%;
+  flex-grow: 1;
 }

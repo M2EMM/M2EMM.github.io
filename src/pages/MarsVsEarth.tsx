@@ -40,15 +40,11 @@ const onRender = (scene: Scene) => {
 const MarsVsEarth: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader translucent>
-        <IonToolbar>
-          <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' ></IonBackButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
+      <IonButtons slot='start'>
+        <IonBackButton defaultHref='/' ></IonBackButton>
+      </IonButtons>
       <IonContent fullscreen>
-        <h1 className='ion-padding'>Mars Vs. Earth</h1>
+        <h1 className='ion-padding title title-planets'>Mars Vs. Earth</h1>
         <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id="my-canvas" />
       </IonContent>
     </IonPage>

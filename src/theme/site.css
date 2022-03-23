@@ -2,3 +2,14 @@
   font-family: Orbitron;
   src: url(../../public/assets/fonts/Orbitron.ttf);
 }
+
+h1.title {
+  font-family: Orbitron;
+  font-size: 28pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+ion-content {
+  --background: url(../../public/assets/bg-space.png) center center / cover no-repeat;
+}

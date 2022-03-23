@@ -7,15 +7,11 @@ const Gravity: React.FC = () => {
   const [mars, setMars] = useState<string>();
   return (
     <IonPage>
-      <IonHeader translucent>
-        <IonToolbar>
-          <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' ></IonBackButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
+      <IonButtons slot='start'>
+        <IonBackButton defaultHref='/' ></IonBackButton>
+      </IonButtons>
       <IonContent fullscreen>
-        <h1 className='ion-padding'>Gravity Game</h1>
+        <h1 className='ion-padding title title-gravity'>Gravity Game</h1>
         <IonCard>
           <IonCardContent>
             <IonLabel position="stacked">My weight on Earth</IonLabel>

@@ -1,7 +1,4 @@
-h1.title {
-  font-family: Orbitron;
-  font-size: 28pt;
-  text-transform: uppercase;
+h1.title-home {
   filter: drop-shadow(3pt 3pt 10pt #BF0202);
 }
 
@@ -19,10 +16,6 @@ h1.title {
   width: 75%;
   height: 75%;
   position: absolute;
-}
-
-ion-content {
-  --background: url(../../public/assets/bg-space.png) center center / cover no-repeat;
 }
 
 .emm-videos {
