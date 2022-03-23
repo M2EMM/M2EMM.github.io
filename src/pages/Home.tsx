@@ -15,10 +15,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <h1 className='ion-padding title title-home'>Emirates Mars Mission</h1>
-        <IonImg src='/assets/mars-hope-probe.png' style={{
-          'max-width': '400px',
-          'margin': '20px auto'
-        }}></IonImg>
+        <IonImg src='/assets/mars-hope-probe.png' className='main-image'></IonImg>
         <IonGrid>
           <IonRow>
             <IonCol>

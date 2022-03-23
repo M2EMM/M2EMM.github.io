@@ -2,6 +2,11 @@ h1.title-home {
   filter: drop-shadow(3pt 3pt 10pt #BF0202);
 }
 
+.main-image {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
 .card-button {
   height: 150px;
   width: 150px;
