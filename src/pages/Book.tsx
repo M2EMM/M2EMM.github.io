@@ -1,4 +1,9 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonPage,
+} from '@ionic/react';
 import './Book.css';
 
 const Book: React.FC = () => {

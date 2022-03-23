@@ -1,4 +1,13 @@
-import { IonBackButton, IonButtons, IonCard, IonCardContent, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonBackButton,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonContent,
+  IonInput,
+  IonLabel,
+  IonPage,
+} from '@ionic/react';
 import { useState } from 'react';
 import './Gravity.css';
 
