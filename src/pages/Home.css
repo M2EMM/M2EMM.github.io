@@ -1,5 +1,101 @@
+h1.title {
+  font-family: Orbitron;
+  font-size: 28pt;
+  text-transform: uppercase;
+  filter: drop-shadow(3pt 3pt 10pt #BF0202);
+}
+
 .card-button {
-    height: 150px;
-    width: 150px;
-    text-align: center;
+  height: 150px;
+  width: 150px;
+  text-align: center;
+  overflow: visible;
+  margin: 10px auto;
+}
+
+.card-button::before {
+  content: '';
+  display: block;
+  width: 75%;
+  height: 75%;
+  position: absolute;
+}
+
+ion-content {
+  --background: url(../../public/assets/bg-space.png) center center / cover no-repeat;
+}
+
+.emm-videos {
+  background: linear-gradient(270deg, #BF863E, #FFB641);
+}
+
+.emm-videos::before {
+  transform: rotate(331deg);
+  top: -10px;
+  left: -25px;
+  background: url(../../public/assets/hope-probe.png) center center / contain no-repeat;
+}
+
+.gravity {
+  background: linear-gradient(270deg, #712328,#A03A3F);
+}
+
+.gravity::before {
+  transform: rotate(45deg);
+  top: -36px;
+  left: -20px;
+  background: url(../../public/assets/gravity-well.png) center center / contain no-repeat;
+  filter: drop-shadow(3pt 3pt 0 #000000);
+}
+
+.mars-vs-earth {
+  background: linear-gradient(270deg, #6C2A18, #3A5F90);
+}
+
+.mars-vs-earth::before {
+  width: 25%;
+  height: 25%;
+  top: -16px;
+  left: 16px;
+  background: url(../../public/assets/mars.png) center center / contain no-repeat;
+}
+
+.mars-vs-earth::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  top: 8px;
+  left: -16px;
+  background: url(../../public/assets/earth.png) center center / contain no-repeat;
+}
+
+.emm-book {
+  background: linear-gradient(270deg, #3A3E43,#929AA3);
+}
+
+.emm-book::before {
+  top: -14px;
+  left: -28px;
+  background: url(../../public/assets/emm-logo.png) center center / contain no-repeat;
+}
+
+.main-card-content {
+  color: #FFFFFF;
+  font-family: Orbitron;
+  font-size: 16pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: end;
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+}
+
+.tiny {
+  font-size: 8pt;
+  font-weight: normal;
+  display: block;
+  text-align: start;
 }
