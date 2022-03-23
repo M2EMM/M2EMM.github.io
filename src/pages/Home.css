@@ -27,6 +27,7 @@ ion-content {
 
 .emm-videos {
   background: linear-gradient(270deg, #BF863E, #FFB641);
+  filter: drop-shadow(3pt 3pt 10pt #B9731ACC);
 }
 
 .emm-videos::before {
@@ -38,6 +39,7 @@ ion-content {
 
 .gravity {
   background: linear-gradient(270deg, #712328,#A03A3F);
+  filter: drop-shadow(3pt 3pt 10pt #A51D25CE);
 }
 
 .gravity::before {
@@ -50,6 +52,7 @@ ion-content {
 
 .mars-vs-earth {
   background: linear-gradient(270deg, #6C2A18, #3A5F90);
+  filter: drop-shadow(3pt 3pt 10pt #31557ED0);
 }
 
 .mars-vs-earth::before {
@@ -73,6 +76,7 @@ ion-content {
 
 .emm-book {
   background: linear-gradient(270deg, #3A3E43,#929AA3);
+  filter: drop-shadow(3pt 3pt 10pt #807D7D9F);
 }
 
 .emm-book::before {
