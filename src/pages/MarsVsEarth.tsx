@@ -98,7 +98,7 @@ const MarsVsEarth: React.FC = () => {
       </IonButtons>
       <IonContent fullscreen>
         <h1 className='ion-padding title title-planets'>Mars Vs. Earth</h1>
-        <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id='my-canvas' />
+        <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id='mars-vs-earth' />
       </IonContent>
     </IonPage>
   );

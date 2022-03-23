@@ -4,5 +4,8 @@ h1.title-planets {
 
 canvas {
   width: 100%;
+  max-width: 1620px;
   flex-grow: 1;
+  max-height: 1080px;
+  min-height: 50%;
 }
