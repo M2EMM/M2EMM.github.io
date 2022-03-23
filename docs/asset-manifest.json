@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e3fed3a5.css",
-    "main.js": "/static/js/main.6821321a.js",
+    "main.css": "/static/css/main.d2a5a26f.css",
+    "main.js": "/static/js/main.cc3accce.js",
     "static/js/3630.ac511758.chunk.js": "/static/js/3630.ac511758.chunk.js",
     "static/js/3107.72238d19.chunk.js": "/static/js/3107.72238d19.chunk.js",
     "static/js/7397.cfdd2413.chunk.js": "/static/js/7397.cfdd2413.chunk.js",
@@ -78,10 +78,17 @@
     "static/js/1186.d773f94e.chunk.js": "/static/js/1186.d773f94e.chunk.js",
     "static/js/9377.036e6968.chunk.js": "/static/js/9377.036e6968.chunk.js",
     "static/js/471.7f43639d.chunk.js": "/static/js/471.7f43639d.chunk.js",
+    "static/media/mars.png": "/static/media/mars.d1b4acc7b66e18bd8ffc.png",
+    "static/media/emm-logo.png": "/static/media/emm-logo.7d8c00ea3553b97b2111.png",
+    "static/media/bg-space.png": "/static/media/bg-space.69446c0b75a418f6ea54.png",
+    "static/media/earth.png": "/static/media/earth.90ea63e1d1780a53762c.png",
+    "static/media/gravity-well.png": "/static/media/gravity-well.e2309fb2adc279fa52ea.png",
+    "static/media/hope-probe.png": "/static/media/hope-probe.3558c625b9c59a27a97f.png",
     "service-worker.js": "/service-worker.js",
+    "static/media/Orbitron.ttf": "/static/media/Orbitron.18a5cb5c73051cb8b6af.ttf",
     "index.html": "/index.html",
-    "main.e3fed3a5.css.map": "/static/css/main.e3fed3a5.css.map",
-    "main.6821321a.js.map": "/static/js/main.6821321a.js.map",
+    "main.d2a5a26f.css.map": "/static/css/main.d2a5a26f.css.map",
+    "main.cc3accce.js.map": "/static/js/main.cc3accce.js.map",
     "3630.ac511758.chunk.js.map": "/static/js/3630.ac511758.chunk.js.map",
     "3107.72238d19.chunk.js.map": "/static/js/3107.72238d19.chunk.js.map",
     "7397.cfdd2413.chunk.js.map": "/static/js/7397.cfdd2413.chunk.js.map",
@@ -160,7 +167,7 @@
     "471.7f43639d.chunk.js.map": "/static/js/471.7f43639d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3fed3a5.css",
-    "static/js/main.6821321a.js"
+    "static/css/main.d2a5a26f.css",
+    "static/js/main.cc3accce.js"
   ]
 }
