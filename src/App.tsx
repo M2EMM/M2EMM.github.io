@@ -1,20 +1,10 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
-  IonCard,
-  IonCol,
-  IonGrid,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
-  IonRow,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
 import Home from './pages/Home';
 import Videos from './pages/Videos';
 import Gravity from './pages/Gravity';
