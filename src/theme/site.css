@@ -2,9 +2,15 @@
   font-family: Orbitron;
   src: url(../../public/assets/fonts/Orbitron.ttf);
 }
+
+@font-face {
+  font-family: Akashi;
+  src: url(../../public/assets/fonts/Akashi.ttf);
+}
+
 h1.title,
 h2.title {
-  font-family: Orbitron;
+  font-family: Akashi;
   font-weight: bold;
   text-transform: uppercase;
 }

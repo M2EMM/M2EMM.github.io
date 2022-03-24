@@ -10,7 +10,7 @@ h2.subtitle-gravity {
 .input-field {
   display: flex;
   font-size: 30pt;
-  font-family: Orbitron;
+  font-family: Akashi;
   font-weight: bold;
   text-transform: uppercase;
   flex-direction: row;
@@ -25,7 +25,7 @@ h2.subtitle-gravity {
 }
 
 .input-field > ion-input {
-  font-family: Orbitron;
+  font-family: Akashi;
   font-size: 20pt;
 }
 
