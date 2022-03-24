@@ -22,8 +22,11 @@ const Videos: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonCard routerLink={`/`} button={true}>
+              <IonCard className='video-card emm' routerLink={`/`} button={true}>
                 {/* <video></video> */}
+                <div className='ratio ratio-16x9'>
+                  <iframe src='https://www.youtube.com/embed/ZHen3W3g0K0' title='Emirates Mars Mission' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission</IonCardTitle>
                   <IonCardSubtitle>What is the Emirates Mars Mission? and why we are proud of it?</IonCardSubtitle>
@@ -31,8 +34,11 @@ const Videos: React.FC = () => {
               </IonCard>
             </IonCol>
             <IonCol>
-              <IonCard routerLink={`/`} button={true}>
+              <IonCard className='video-card emmo' routerLink={`/`} button={true}>
                 {/* <video></video> */}
+                <div className='ratio ratio-16x9'>
+                  <iframe src='https://www.youtube.com/embed/0mUEpOZNWwk' title='Emirates Mars Mission Objectives' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission Objectives</IonCardTitle>
                   <IonCardSubtitle>What is the Emirates Mars Mission objectives? and why we are exploring mars?</IonCardSubtitle>
@@ -40,8 +46,11 @@ const Videos: React.FC = () => {
               </IonCard>
             </IonCol>
             <IonCol>
-              <IonCard routerLink={`/`} button={true}>
+              <IonCard className='video-card emmj' routerLink={`/`} button={true}>
                 {/* <video></video> */}
+                <div className='ratio ratio-16x9'>
+                  <iframe src='https://www.youtube.com/embed/WlkN7GAxTBU' title='Emirates Mars Mission Journey' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission Journey</IonCardTitle>
                   <IonCardSubtitle>What is the Emirates Mars Mission stages? and why we are proud of it?</IonCardSubtitle>

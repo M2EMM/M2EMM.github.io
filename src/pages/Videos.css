@@ -1,3 +1,28 @@
 h1.title-videos {
   filter: drop-shadow(3pt 3pt 6pt #FF9C00);
 }
+
+ion-card-title,
+ion-card-subtitle {
+  color: #FFFFFF;
+}
+
+.video-card {
+  min-width: 250px;
+  margin-top: 64px;
+}
+
+.emm {
+  background: #1D2B45;
+  filter: drop-shadow(0 0 40pt #02257680);
+}
+
+.emmo {
+  background: #CE8428;
+  filter: drop-shadow(0 0 40pt #FAB13F80);
+}
+
+.emmj {
+  background: #732429;
+  filter: drop-shadow(0 0 40pt #DB041280);
+}
