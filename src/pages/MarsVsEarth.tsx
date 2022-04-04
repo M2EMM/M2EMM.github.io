@@ -1,8 +1,12 @@
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
+  IonCol,
   IonContent,
+  IonGrid,
   IonPage,
+  IonRow,
 } from '@ionic/react';
 import {
   ArcRotateCamera,
@@ -15,38 +19,57 @@ import {
   StandardMaterial,
   Texture,
   Color3,
+  Color4,
 } from '@babylonjs/core';
 import SceneComponent from 'babylonjs-hook';
 import './MarsVsEarth.css';
+import { useState } from 'react';
 
-// Taken from: https://doc.babylonjs.com/extensions/Babylon.js+ExternalLibraries/BabylonJS_and_ReactJS
-// let box: Mesh;
+/**
+ * 0: Compare
+ * 1: Spread
+ */
+let mode: number;
+let setMode: React.Dispatch<React.SetStateAction<number>>;
+/**
+ * 0: Mars
+ * 1: Earth
+ */
+let camera: ArcRotateCamera;
+let target: number;
+let setTarget: React.Dispatch<React.SetStateAction<number>>;
+
 let earth: Mesh;
-let moon: Mesh;
 let mars: Mesh;
-const onSceneReady = (scene: Scene) => {
+let moon: Mesh;
+const diameterEarth = 10;
+const diameterMars = diameterEarth * 0.531;
+const diameterMoon = diameterEarth * 0.2725;
+
+// Based on: https://doc.babylonjs.com/extensions/Babylon.js+ExternalLibraries/BabylonJS_and_ReactJS
+const onSceneReady = async (scene: Scene) => {
+  scene.clearColor = new Color4(0, 0, 0, 0);
   const canvas = scene.getEngine().getRenderingCanvas();
-  // const camera = new ArcRotateCamera('camera1', Math.PI, Math.PI / 2, 20, Vector3.Zero(), scene);
-  const camera = new ArcRotateCamera('camera1', -Math.PI / 1.1, Math.PI / 2.5, 20, Vector3.Zero(), scene);
-  console.log(camera)
-  // This targets the camera to scene origin
+  // Camera
+  camera = new ArcRotateCamera('camera', -Math.PI / 1.1, Math.PI / 2.5, 20, Vector3.Zero(), scene);
   camera.setTarget(Vector3.Zero());
-  // This attaches the camera to the canvas
   camera.attachControl(canvas, true);
-  // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+
+  // Lights
   const light1 = new HemisphericLight('light', new Vector3(-1, 0, 0), scene);
   light1.intensity = 0.2;
   const light2 = new DirectionalLight('light', new Vector3(1, 0, 0), scene);
   light2.intensity = 1;
   // light.diffuse = new Color3(1, 1, 1);
+
   // Sky Dome
-  const skyDome = MeshBuilder.CreateSphere("Dome", { diameter: 1024 }, scene);
+  const skyDome = MeshBuilder.CreateSphere('Dome', { diameter: 1024 }, scene);
   const skyDomeMaterial = new StandardMaterial('skyDome', scene);
   skyDomeMaterial.diffuseTexture = new Texture('/assets/models/starfield.jpg', scene);
   skyDomeMaterial.backFaceCulling = false;
   skyDome.material = skyDomeMaterial;
+
   // Earth
-  const diameterEarth = 10;
   const materialEarth = new StandardMaterial('materialEarth', scene);
   materialEarth.diffuseTexture = new Texture('/assets/models/earthmap1k.jpg', scene);
   // materialEarth.bumpTexture = new Texture('/assets/models/earthbump1k.jpg', scene);
@@ -55,8 +78,8 @@ const onSceneReady = (scene: Scene) => {
   earth.material = materialEarth;
   earth.rotation.x = Math.PI;
   earth.position.x = diameterEarth;
+
   // Mars
-  const diameterMars = diameterEarth * 0.531;
   const materialMars = new StandardMaterial('materialMars', scene);
   materialMars.diffuseTexture = new Texture('/assets/models/marsmap1k.jpg', scene);
   // materialMars.bumpTexture = new Texture('/assets/models/marsbump1k.jpg', scene);
@@ -65,8 +88,8 @@ const onSceneReady = (scene: Scene) => {
   mars.material = materialMars;
   mars.rotation.x = Math.PI;
   mars.position.x = 0;
+
   // Moon
-  const diameterMoon = diameterEarth * 0.2725;
   const materialMoon = new StandardMaterial('materialMoon', scene);
   materialMoon.diffuseTexture = new Texture('/assets/models/moonmap1k.jpg', scene);
   // materialMoon.bumpTexture = new Texture('/assets/models/moonbump1k.jpg', scene);
@@ -75,6 +98,13 @@ const onSceneReady = (scene: Scene) => {
   moon.material = materialMoon;
   moon.rotation.x = Math.PI;
   moon.position.x = -diameterMars;
+
+  // WebXR
+  const xr = await scene.createDefaultXRExperienceAsync({
+    uiOptions: {
+      sessionMode: 'immersive-ar'
+    }
+  });
 };
 
 /**
@@ -91,6 +121,42 @@ const onRender = (scene: Scene) => {
 };
 
 const MarsVsEarth: React.FC = () => {
+  [mode, setMode] = useState<number>(0);
+  [target, setTarget] = useState<number>(0);
+  const setPlanetMode = (mode: number) => {
+    setMode(mode);
+    switch (mode) {
+      case 0:
+        earth.position.x = diameterEarth;
+        // earth.position.y = 0;
+        mars.position.x = 0;
+        // mars.position.y = 0;
+        moon.position.x = -diameterMars;
+        // moon.position.y = 0;
+        break;
+      case 1:
+        earth.position.x = 200;
+        // earth.position.y = 0;
+        mars.position.x = 0;
+        // mars.position.y = 0;
+        moon.position.x = -200;
+        // moon.position.y = 0;
+        break;
+    }
+  }
+  const setCameraPlanet = (target: number) => {
+    setTarget(target);
+    switch (target) {
+      case 0:
+        camera.setTarget(mars.position);
+        camera.radius = 20;
+        break;
+      case 1:
+        camera.setTarget(earth.position);
+        camera.radius = 20;
+        break;
+    }
+  }
   return (
     <IonPage>
       <IonButtons slot='start'>
@@ -99,6 +165,56 @@ const MarsVsEarth: React.FC = () => {
       <IonContent fullscreen>
         <h1 className='ion-padding title title-planets'>Mars Vs. Earth</h1>
         <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id='mars-vs-earth' />
+        <IonGrid className='ion-text-center'>
+          <IonRow>
+            <IonCol>
+              <IonButton
+                color='primary'
+                size='large'
+                expand='block'
+                shape='round'
+                fill={mode === 0 ? 'solid' : 'outline'}
+                onClick={() => { setPlanetMode(0) }}>
+                Compare
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton
+                color='secondary'
+                size='large'
+                expand='block'
+                shape='round'
+                fill={mode === 1 ? 'solid' : 'outline'}
+                onClick={() => { setPlanetMode(1) }}>
+                Seperated
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonButton
+                color='primary'
+                size='large'
+                expand='block'
+                shape='round'
+                fill={target === 0 ? 'solid' : 'outline'}
+                onClick={() => { setCameraPlanet(0); }}>
+                Mars
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton
+                color='secondary'
+                size='large'
+                expand='block'
+                shape='round'
+                fill={target === 1 ? 'solid' : 'outline'}
+                onClick={() => { setCameraPlanet(1); }}>
+                Earth
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
