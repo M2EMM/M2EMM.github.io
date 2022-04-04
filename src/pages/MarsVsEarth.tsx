@@ -149,13 +149,14 @@ const MarsVsEarth: React.FC = () => {
     switch (target) {
       case 0:
         camera.setTarget(mars.position);
-        camera.radius = 20;
         break;
       case 1:
         camera.setTarget(earth.position);
-        camera.radius = 20;
         break;
     }
+    camera.radius = 20;
+    camera.alpha = -Math.PI / 1.1;
+    camera.beta = Math.PI / 2.5;
   }
   return (
     <IonPage>
