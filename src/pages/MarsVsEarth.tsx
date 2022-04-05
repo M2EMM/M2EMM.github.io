@@ -45,15 +45,17 @@ let moon: Mesh;
 const diameterEarth = 10;
 const diameterMars = diameterEarth * 0.531;
 const diameterMoon = diameterEarth * 0.2725;
+const distanceEarthMoon = 10;
+const rpmEarth = 10;
+const rpmMoon = rpmEarth * .35;
+const rpmMars = rpmEarth * 1.029;
+const cameraAlpha = -Math.PI / 1.1;
+const cameraBeta = Math.PI / 2.5;
 
 // Based on: https://doc.babylonjs.com/extensions/Babylon.js+ExternalLibraries/BabylonJS_and_ReactJS
 const onSceneReady = async (scene: Scene) => {
   scene.clearColor = new Color4(0, 0, 0, 0);
   const canvas = scene.getEngine().getRenderingCanvas();
-  // Camera
-  camera = new ArcRotateCamera('camera', -Math.PI / 1.1, Math.PI / 2.5, 20, Vector3.Zero(), scene);
-  camera.setTarget(Vector3.Zero());
-  camera.attachControl(canvas, true);
 
   // Lights
   const light1 = new HemisphericLight('light', new Vector3(-1, 0, 0), scene);
@@ -69,16 +71,6 @@ const onSceneReady = async (scene: Scene) => {
   skyDomeMaterial.backFaceCulling = false;
   skyDome.material = skyDomeMaterial;
 
-  // Earth
-  const materialEarth = new StandardMaterial('materialEarth', scene);
-  materialEarth.diffuseTexture = new Texture('/assets/models/earthmap1k.jpg', scene);
-  // materialEarth.bumpTexture = new Texture('/assets/models/earthbump1k.jpg', scene);
-  materialEarth.specularColor = new Color3(0, 0, 0);
-  earth = MeshBuilder.CreateSphere('earth', { segments: 100, diameter: diameterEarth }, scene);
-  earth.material = materialEarth;
-  earth.rotation.x = Math.PI;
-  earth.position.x = diameterEarth;
-
   // Mars
   const materialMars = new StandardMaterial('materialMars', scene);
   materialMars.diffuseTexture = new Texture('/assets/models/marsmap1k.jpg', scene);
@@ -89,6 +81,16 @@ const onSceneReady = async (scene: Scene) => {
   mars.rotation.x = Math.PI;
   mars.position.x = 0;
 
+  // Earth
+  const materialEarth = new StandardMaterial('materialEarth', scene);
+  materialEarth.diffuseTexture = new Texture('/assets/models/earthmap1k.jpg', scene);
+  // materialEarth.bumpTexture = new Texture('/assets/models/earthbump1k.jpg', scene);
+  materialEarth.specularColor = new Color3(0, 0, 0);
+  earth = MeshBuilder.CreateSphere('earth', { segments: 100, diameter: diameterEarth }, scene);
+  earth.material = materialEarth;
+  earth.rotation.x = Math.PI;
+  earth.position.x = 200;
+
   // Moon
   const materialMoon = new StandardMaterial('materialMoon', scene);
   materialMoon.diffuseTexture = new Texture('/assets/models/moonmap1k.jpg', scene);
@@ -97,7 +99,11 @@ const onSceneReady = async (scene: Scene) => {
   moon = MeshBuilder.CreateSphere('earth', { segments: 100, diameter: diameterMoon }, scene);
   moon.material = materialMoon;
   moon.rotation.x = Math.PI;
-  moon.position.x = -diameterMars;
+  moon.position.x = earth.position.x + distanceEarthMoon;
+
+  // Camera
+  camera = new ArcRotateCamera('camera', cameraAlpha, cameraBeta, 30, earth.position, scene);
+  camera.attachControl(canvas, true);
 
   // WebXR
   const xr = await scene.createDefaultXRExperienceAsync({
@@ -111,18 +117,21 @@ const onSceneReady = async (scene: Scene) => {
  * Will run on every frame render.  We are spinning the box on y-axis.
  */
 const onRender = (scene: Scene) => {
-  const rpmEarth = 1;
-  const rpmMoon = rpmEarth * (1 / 655.720);
-  const rpmMars = rpmEarth * 1.029;
   const deltaTimeInMillis = scene.getEngine().getDeltaTime();
-  if (earth) earth.rotation.y += (rpmEarth / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000);
-  if (moon) moon.rotation.y += (rpmMoon / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000);
-  if (mars) mars.rotation.y += (rpmMars / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000);
+  const deltaTimeInSeconds = deltaTimeInMillis / 1000;
+  earth.rotation.y -= 2 * Math.PI * rpmEarth * deltaTimeInSeconds ** 2;
+  moon.rotation.y -= 2 * Math.PI * rpmMoon * deltaTimeInSeconds ** 2;
+  mars.rotation.y -= 2 * Math.PI * rpmMars * deltaTimeInSeconds ** 2;
+
+  if (mode === 1) {
+    moon.position.x = earth.position.x + distanceEarthMoon * Math.cos(-moon.rotation.y);
+    moon.position.z = earth.position.z + distanceEarthMoon * Math.sin(-moon.rotation.y);
+  }
 };
 
 const MarsVsEarth: React.FC = () => {
-  [mode, setMode] = useState<number>(0);
-  [target, setTarget] = useState<number>(0);
+  [mode, setMode] = useState<number>(1);
+  [target, setTarget] = useState<number>(1);
   const setPlanetMode = (mode: number) => {
     setMode(mode);
     switch (mode) {
@@ -132,6 +141,7 @@ const MarsVsEarth: React.FC = () => {
         mars.position.x = 0;
         // mars.position.y = 0;
         moon.position.x = -diameterMars;
+        moon.position.z = 0;
         // moon.position.y = 0;
         break;
       case 1:
@@ -139,11 +149,11 @@ const MarsVsEarth: React.FC = () => {
         // earth.position.y = 0;
         mars.position.x = 0;
         // mars.position.y = 0;
-        moon.position.x = -200;
+        moon.position.x = earth.position.x + distanceEarthMoon;
         // moon.position.y = 0;
         break;
     }
-  }
+  };
   const setCameraPlanet = (target: number) => {
     setTarget(target);
     switch (target) {
@@ -155,9 +165,9 @@ const MarsVsEarth: React.FC = () => {
         break;
     }
     camera.radius = 20;
-    camera.alpha = -Math.PI / 1.1;
-    camera.beta = Math.PI / 2.5;
-  }
+    camera.alpha = cameraAlpha;
+    camera.beta = cameraBeta;
+  };
   return (
     <IonPage>
       <IonButtons slot='start'>
@@ -187,7 +197,7 @@ const MarsVsEarth: React.FC = () => {
                 shape='round'
                 fill={mode === 1 ? 'solid' : 'outline'}
                 onClick={() => { setPlanetMode(1) }}>
-                Seperated
+                Separated
               </IonButton>
             </IonCol>
           </IonRow>
