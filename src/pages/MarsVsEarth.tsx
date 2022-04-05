@@ -40,15 +40,23 @@ let target: number;
 let setTarget: React.Dispatch<React.SetStateAction<number>>;
 
 let earth: Mesh;
-let mars: Mesh;
 let moon: Mesh;
+let mars: Mesh;
+let phobos: Mesh;
+let deimos: Mesh;
 const diameterEarth = 10;
-const diameterMars = diameterEarth * 0.531;
 const diameterMoon = diameterEarth * 0.2725;
+const diameterMars = diameterEarth * 0.531;
+const diameterPhobos = diameterMars * 0.1//0.00327;
+const diameterDeimos = diameterMars * 0.05//0.00185;
 const distanceEarthMoon = 10;
+const distanceMarsPhobos = diameterMars;
+const distanceMarsDeimos = distanceMarsPhobos * 2;
 const rpmEarth = 10;
 const rpmMoon = rpmEarth * .35;
 const rpmMars = rpmEarth * 1.029;
+const rpmPhobos = rpmMars * 1.029;////
+const rpmDeimos = rpmMars * 1.029;////
 const cameraAlpha = -Math.PI / 1.1;
 const cameraBeta = Math.PI / 2.5;
 
@@ -71,16 +79,6 @@ const onSceneReady = async (scene: Scene) => {
   skyDomeMaterial.backFaceCulling = false;
   skyDome.material = skyDomeMaterial;
 
-  // Mars
-  const materialMars = new StandardMaterial('materialMars', scene);
-  materialMars.diffuseTexture = new Texture('/assets/models/marsmap1k.jpg', scene);
-  // materialMars.bumpTexture = new Texture('/assets/models/marsbump1k.jpg', scene);
-  materialMars.specularColor = new Color3(0, 0, 0);
-  mars = MeshBuilder.CreateSphere('earth', { segments: 100, diameter: diameterMars }, scene);
-  mars.material = materialMars;
-  mars.rotation.x = Math.PI;
-  mars.position.x = 0;
-
   // Earth
   const materialEarth = new StandardMaterial('materialEarth', scene);
   materialEarth.diffuseTexture = new Texture('/assets/models/earthmap1k.jpg', scene);
@@ -96,10 +94,40 @@ const onSceneReady = async (scene: Scene) => {
   materialMoon.diffuseTexture = new Texture('/assets/models/moonmap1k.jpg', scene);
   // materialMoon.bumpTexture = new Texture('/assets/models/moonbump1k.jpg', scene);
   materialMoon.specularColor = new Color3(0, 0, 0);
-  moon = MeshBuilder.CreateSphere('earth', { segments: 100, diameter: diameterMoon }, scene);
+  moon = MeshBuilder.CreateSphere('moon', { segments: 100, diameter: diameterMoon }, scene);
   moon.material = materialMoon;
   moon.rotation.x = Math.PI;
   moon.position.x = earth.position.x + distanceEarthMoon;
+
+  // Mars
+  const materialMars = new StandardMaterial('materialMars', scene);
+  materialMars.diffuseTexture = new Texture('/assets/models/marsmap1k.jpg', scene);
+  // materialMars.bumpTexture = new Texture('/assets/models/marsbump1k.jpg', scene);
+  materialMars.specularColor = new Color3(0, 0, 0);
+  mars = MeshBuilder.CreateSphere('mars', { segments: 100, diameter: diameterMars }, scene);
+  mars.material = materialMars;
+  mars.rotation.x = Math.PI;
+  mars.position.x = 0;
+
+  // Phobos
+  const materialPhobos = new StandardMaterial('materialPhobos', scene);
+  materialPhobos.diffuseTexture = new Texture('/assets/models/phobosmap1k.jpg', scene);
+  // materialPhobos.bumpTexture = new Texture('/assets/models/phobosbump1k.jpg', scene);
+  materialPhobos.specularColor = new Color3(0, 0, 0);
+  phobos = MeshBuilder.CreateSphere('phobos', { segments: 100, diameter: diameterPhobos }, scene);
+  phobos.material = materialPhobos;
+  phobos.rotation.x = Math.PI;
+  phobos.position.x = distanceMarsPhobos;
+
+  // Deimos
+  const materialDeimos = new StandardMaterial('materialDeimos', scene);
+  materialDeimos.diffuseTexture = new Texture('/assets/models/deimosmap1k.jpg', scene);
+  // materialDeimos.bumpTexture = new Texture('/assets/models/deimosbump1k.jpg', scene);
+  materialDeimos.specularColor = new Color3(0, 0, 0);
+  deimos = MeshBuilder.CreateSphere('deimos', { segments: 100, diameter: diameterDeimos }, scene);
+  deimos.material = materialDeimos;
+  deimos.rotation.x = Math.PI;
+  deimos.position.x = distanceMarsDeimos;
 
   // Camera
   camera = new ArcRotateCamera('camera', cameraAlpha, cameraBeta, 30, earth.position, scene);
@@ -122,10 +150,16 @@ const onRender = (scene: Scene) => {
   earth.rotation.y -= 2 * Math.PI * rpmEarth * deltaTimeInSeconds ** 2;
   moon.rotation.y -= 2 * Math.PI * rpmMoon * deltaTimeInSeconds ** 2;
   mars.rotation.y -= 2 * Math.PI * rpmMars * deltaTimeInSeconds ** 2;
+  phobos.rotation.y -= 2 * Math.PI * rpmPhobos * deltaTimeInSeconds ** 2;
+  deimos.rotation.y -= 2 * Math.PI * rpmDeimos * deltaTimeInSeconds ** 2;
 
   if (mode === 1) {
     moon.position.x = earth.position.x + distanceEarthMoon * Math.cos(-moon.rotation.y);
     moon.position.z = earth.position.z + distanceEarthMoon * Math.sin(-moon.rotation.y);
+    phobos.position.x = mars.position.x + distanceMarsPhobos * Math.cos(-phobos.rotation.y);
+    phobos.position.z = mars.position.z + distanceMarsPhobos * Math.sin(-phobos.rotation.y);
+    deimos.position.x = mars.position.x + distanceMarsDeimos * Math.cos(-deimos.rotation.y * 0.2);
+    deimos.position.z = mars.position.z + distanceMarsDeimos * Math.sin(-deimos.rotation.y * 0.2);
   }
 };
 
@@ -143,6 +177,12 @@ const MarsVsEarth: React.FC = () => {
         moon.position.x = -diameterMars;
         moon.position.z = 0;
         // moon.position.y = 0;
+        phobos.position.x = -(diameterMars + diameterMoon);
+        phobos.position.z = 0;
+        // phobos.position.y = 0;
+        deimos.position.x = -(diameterMars + diameterMoon + diameterPhobos + 1);
+        deimos.position.z = 0;
+        // deimos.position.y = 0;
         break;
       case 1:
         earth.position.x = 200;
@@ -151,6 +191,10 @@ const MarsVsEarth: React.FC = () => {
         // mars.position.y = 0;
         moon.position.x = earth.position.x + distanceEarthMoon;
         // moon.position.y = 0;
+        phobos.position.x = mars.position.x + distanceMarsPhobos;
+        // phobos.position.y = 0;
+        deimos.position.x = mars.position.x + distanceMarsDeimos;
+        // deimos.position.y = 0;
         break;
     }
   };
