@@ -1,3 +1,23 @@
 h1.title-book {
   filter: drop-shadow(3pt 3pt 10pt #8F969F);
 }
+
+ion-card-title,
+ion-card-subtitle {
+  color: #FFFFFF;
+}
+
+.book-card {
+  aspect-ratio: 4 / 3;
+  min-width: 250px;
+  margin-top: 64px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.book-header {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+}

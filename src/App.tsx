@@ -10,6 +10,7 @@ import Videos from './pages/Videos';
 import Gravity from './pages/Gravity';
 import MarsVsEarth from './pages/MarsVsEarth';
 import Book from './pages/Book';
+import PDFViewer from './pages/PDFViewer';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,23 +38,14 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/videos">
-          <Videos />
-        </Route>
-        <Route path="/gravity">
-          <Gravity />
-        </Route>
-        <Route exact path="/mars-vs-earth">
-          <MarsVsEarth />
-        </Route>
-        <Route path="/book">
-          <Book />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
+        <Route exact path='/home' component={Home} />
+        <Route path='/videos' component={Videos} />
+        <Route path='/gravity' component={Gravity} />
+        <Route path='/mars-vs-earth' component={MarsVsEarth} />
+        <Route path='/book' component={Book} />
+        <Route path='/pdfviewer/:language' component={PDFViewer} />
+        <Route exact path='/'>
+          <Redirect to='/home' />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

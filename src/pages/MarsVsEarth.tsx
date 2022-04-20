@@ -47,8 +47,8 @@ let deimos: Mesh;
 const diameterEarth = 10;
 const diameterMoon = diameterEarth * 0.2725;
 const diameterMars = diameterEarth * 0.531;
-const diameterPhobos = diameterMars * 0.1//0.00327;
-const diameterDeimos = diameterMars * 0.05//0.00185;
+const diameterPhobos = diameterMars * 0.1;//0.00327;
+const diameterDeimos = diameterMars * 0.05;//0.00185;
 const distanceEarthMoon = 10;
 const distanceMarsPhobos = diameterMars;
 const distanceMarsDeimos = distanceMarsPhobos * 2;
@@ -135,6 +135,7 @@ const onSceneReady = async (scene: Scene) => {
 
   // WebXR
   const xr = await scene.createDefaultXRExperienceAsync({
+    floorMeshes: [skyDome],
     uiOptions: {
       sessionMode: 'immersive-ar'
     }
