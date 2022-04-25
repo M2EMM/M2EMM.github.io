@@ -4,7 +4,7 @@ import {
   IonRouterOutlet,
   setupIonicReact
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactRouter, IonReactHashRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Videos from './pages/Videos';
 import Gravity from './pages/Gravity';
@@ -36,7 +36,7 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
+    <IonReactHashRouter>
       <IonRouterOutlet>
         <Route exact path='/home' component={Home} />
         <Route path='/videos' component={Videos} />
@@ -48,7 +48,7 @@ const App: React.FC = () => (
           <Redirect to='/home' />
         </Route>
       </IonRouterOutlet>
-    </IonReactRouter>
+    </IonReactHashRouter>
   </IonApp>
 );
 
