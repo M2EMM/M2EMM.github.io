@@ -25,7 +25,7 @@ const Videos: React.FC = () => {
               <IonCard className='video-card emm'>
                 {/* <video></video> */}
                 <div className='ratio ratio-16x9'>
-                  <iframe src='https://www.youtube.com/embed/ZHen3W3g0K0' title='Emirates Mars Mission' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                  <iframe src='https://www.youtube.com/embed/0oyJ17mbxLg' title='Emirates Mars Mission' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
                 </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission</IonCardTitle>
@@ -37,7 +37,7 @@ const Videos: React.FC = () => {
               <IonCard className='video-card emmo'>
                 {/* <video></video> */}
                 <div className='ratio ratio-16x9'>
-                  <iframe src='https://www.youtube.com/embed/0mUEpOZNWwk' title='Emirates Mars Mission Objectives' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                  <iframe src='https://www.youtube.com/embed/d9R2-pRaALM' title='Emirates Mars Mission Objectives' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
                 </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission Objectives</IonCardTitle>
@@ -49,7 +49,7 @@ const Videos: React.FC = () => {
               <IonCard className='video-card emmj'>
                 {/* <video></video> */}
                 <div className='ratio ratio-16x9'>
-                  <iframe src='https://www.youtube.com/embed/WlkN7GAxTBU' title='Emirates Mars Mission Journey' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+                  <iframe src='https://www.youtube.com/embed/1aKa0EhV_no' title='Emirates Mars Mission Journey' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
                 </div>
                 <IonCardHeader>
                   <IonCardTitle>Emirates Mars Mission Journey</IonCardTitle>
