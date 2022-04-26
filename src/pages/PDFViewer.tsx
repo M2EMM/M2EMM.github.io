@@ -30,7 +30,7 @@ const PDFViewer: React.FC<PDFViewerPageProps> = ({ match }) => {
           <div style={{ height: '100%' }}>
             <Viewer
               theme='dark'
-              fileUrl={`/assets/books/M2 Book ${match.params.language}.pdf`}
+              fileUrl={`/assets/books/EMM ${match.params.language} Book.pdf`}
               plugins={[defaultLayoutPluginInstance]}
             />
           </div>
