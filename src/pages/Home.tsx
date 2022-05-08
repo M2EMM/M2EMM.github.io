@@ -32,6 +32,8 @@ const Home: React.FC = () => {
                 </IonCardContent>
               </IonCard>
             </IonCol>
+          </IonRow>
+          <IonRow>
             <IonCol>
               <IonCard className='card-button mars-vs-earth' routerLink={`/mars-vs-earth`} button={true}>
                 <IonCardContent className='main-card-content'>
