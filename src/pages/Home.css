@@ -36,7 +36,7 @@ h1.title-home {
 }
 
 .gravity {
-  background: linear-gradient(270deg, #712328,#A03A3F);
+  background: linear-gradient(270deg, #712328, #A03A3F);
   filter: drop-shadow(3pt 3pt 10pt #A51D25CE);
 }
 
@@ -73,7 +73,7 @@ h1.title-home {
 }
 
 .emm-book {
-  background: linear-gradient(270deg, #3A3E43,#929AA3);
+  background: linear-gradient(270deg, #3A3E43, #929AA3);
   filter: drop-shadow(3pt 3pt 10pt #807D7D9F);
 }
 
@@ -100,4 +100,18 @@ h1.title-home {
   font-weight: normal;
   display: block;
   text-align: start;
+}
+
+@media (min-width: 769px) {
+  .card-button {
+    height: 350px;
+    width: 350px;
+    text-align: center;
+    overflow: visible;
+    margin: 10px auto;
+  }
+
+  .main-card-content {
+    font-size: 24pt;
+  }
 }
